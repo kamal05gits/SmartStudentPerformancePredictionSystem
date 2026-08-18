@@ -1,16 +1,13 @@
 # Smart Student Performance Prediction System
 
-# Problem Statement:
+# 1. PROBLEM STATEMENT:
 
- * Student performance is influenced by multiple academic and behavioral factors.
+- Student performance is influenced by multiple academic and behavioral factors.
+- Faculty may find it difficult to identify students who are at risk at an early stage.
+- A data-driven system can help predict student performance.
+- The system can provide recommendations for improving student outcomes.
 
- * Faculty may find it difficult to identify students who are at risk at an early stage.
-
- * A data-driven system can help predict student performance.
-
- * The system can provide recommendations for improving student outcomes.
-
-## Proposed Solution
+# 2. PROPOSED SOLUTION:
 
 - Collect student-related information.
 - Process the entered data.
@@ -19,119 +16,50 @@
 - Generate intelligent recommendations.
 - Display the results through a user-friendly Tkinter interface.
 
-## Requirement Analysis
+# 3. PROCESS FLOW:
 
-### Identify the User
+               Start
+                 ↓
+        Enter Student Details
+                 ↓
+           Validate Input
+                 ↓
+           Preprocess Data
+                 ↓
+           ML Prediction
+                 ↓
+      Determine Performance Level
+                 ↓
+      Generate AI Recommendation
+                 ↓
+            Display Result
+                 ↓
+                End
 
-Primary users may include:
-
-- Faculty
-- Academic coordinators
-- Mentors
-- Students
-
-## Project – Modular Application Development
-
-Create separate functions:
-
-```text
-get_student_data()
-calculate_average()
-calculate_performance()
-display_result()
-```
-
-## Project Mapping
+# 4. PROJECT MAPPING:
 
 | V-Model Stage | Smart Student Project |
 |---|---|
-| Requirement analysis | Identify student performance problems |
+| Requirement Analysis | Identify student performance problem |
 | System Design | Design system architecture and UI |
 | Implementation | Develop Python + ML application |
-| Integration | Integrate UI, ML, and AI components |
+| Integration | Integrate UI, ML and AI |
 | Testing | Test individual modules and complete system |
 | Validation | Check system against requirements |
-| Demonstration | Present working application |
+| Demonstration | Present working capstone |
 
-## Process Flow
+# 5. PROJECT - MODULAR APPLICATION DEVELOPMENT:
 
-```text
-Start
-  ↓
-Enter Student Details
-  ↓
-Validate Input
-  ↓
-Preprocess Data
-  ↓
-ML Prediction
-  ↓
-Determine Performance Level
-  ↓
-Generate AI Recommendations
-  ↓
-Display Result
-  ↓
-End
-```
+Create separate functions:
 
-## Identify System Outputs
+    get_student_data()
+    calculate_average()
+    calculate_performance()
+    display_result()
 
-### Performance Prediction
+# 6. REQUIREMENT ANALYSIS:
 
-- Excellent
-- Good
-- Average
-- At Risk
-
-## Identify System Inputs
-
-The initial system can use:
-
-- Student ID
-- Student name
-- Attendance percentage
-- Study hours per day
-- Internal assessment marks
-- Assignment completion percentage
-- Previous academic performance
-
-### Example Input Parameters
-
-| Parameter | Example |
-|---|---:|
-| Attendance | 82% |
-| Study Hours | 4 hours/day |
-| Internal Marks | 76% |
-| Assignment Completion | 90% |
-| Previous Performance | 72% |
-
-## User Requirement
-
-The user should be able to:
-
-- Enter student information.
-- Submit the information for analysis.
-- View predicted performance.
-- Understand the student's risk level.
-- Receive improvement recommendations.
-
-## Additional Output
-
-The system should provide:
-
-- Prediction score/probability
-- Risk level
-- Key factors affecting performance
-- Recommended actions
-
-### Example
-
-**Prediction:** Good Performance  
-**Risk Level:** Low  
-**Recommendation:** Maintain current study pattern and attendance.
-
-## Functional Requirements
+## 6.1 FUNCTIONAL REQUIREMENTS:
 
 The system should:
 
@@ -146,7 +74,7 @@ The system should:
 - Handle invalid inputs.
 - Provide a reset/clear option.
 
-## Non-Functional Requirements
+## 6.2 NON-FUNCTIONAL REQUIREMENTS:
 
 The application should be:
 
@@ -159,9 +87,57 @@ The application should be:
 - Secure with respect to student data
 - Easy to test
 
-## Sample Output
+## 6.3 IDENTIFY THE USER:
 
-**Student Name:** Arun  
-**Performance Level:** GOOD  
-**Recommendation:** Maintain attendance and continue regular study.
+Primary users may include:
 
+- Faculty
+- Academic coordinators
+- Mentors
+- Students
+
+## 6.4 USER REQUIREMENT:
+
+The user should be able to:
+
+- Enter student information.
+- Submit the information for analysis.
+- View predicted performance.
+- Understand the student's risk level.
+- Receive improvement recommendations.
+
+## 6.5 IDENTIFY SYSTEM INPUTS:
+
+The initial system can use:
+
+- Student ID
+- Student Name
+- Attendance Percentage
+- Study Hours per Day
+- Internal Assessment Marks
+- Assignment Completion Percentage
+- Previous Academic Performance
+
+## 6.6 IDENTIFY SYSTEM OUTPUTS:
+
+### 6.6.1 PERFORMANCE PREDICTION:
+
+- Excellent
+- Good
+- Average
+- At Risk
+
+### 6.6.2 ADDITIONAL OUTPUT:
+
+- Prediction score/probability
+- Risk level
+- Key factors affecting performance
+- Recommended actions
+
+# Example:
+
+**Prediction:** Good Performance
+
+**Risk Level:** Low
+
+**Recommendation:** Maintain current study pattern and attendance
