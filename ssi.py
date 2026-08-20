@@ -1,26 +1,44 @@
 def classify_student(score):
+    """Convert a predicted score into a performance class and risk level."""
+    score = max(0.0, min(100.0, float(score)))
     if score >= 75.0:
-        classification = "High Distinction"
-        risk_level = "Low Risk"
-    elif score >= 50.0:
-        classification = "Moderate / Average"
-        risk_level = "Medium Risk"
-    else:
-        classification = "Needs Attention"
-        risk_level = "High Risk"
-    return classification, risk_level
+        return "High Distinction", "Low Risk"
+    if score >= 50.0:
+        return "Moderate / Average", "Medium Risk"
+    return "Needs Attention", "High Risk"
 
-def generate_recommendation(risk_level, study_hours, attendance, internal_marks):
-    if risk_level == "Low Risk":
-        return "Maintain current study consistency and active participation."
+
+def generate_recommendation(risk_level, study_hours, attendance, internal_marks,
+                            assignment_score=None, previous_score=None):
+    """Generate recommendations from the student's weakest available indicators."""
+    study_hours = float(study_hours)
+    attendance = float(attendance)
+    internal_marks = float(internal_marks)
+    assignment_score = None if assignment_score is None else float(assignment_score)
+    previous_score = None if previous_score is None else float(previous_score)
+
+    issues = []
+    if attendance < 75:
+        issues.append("improve attendance to at least 75%")
+    if study_hours < 3:
+        issues.append("increase focused study time to at least 3 hours/day")
+    if internal_marks < 50:
+        issues.append("strengthen internal-assessment preparation")
+    if assignment_score is not None and assignment_score < 60:
+        issues.append("complete assignments consistently and review missed work")
+    if previous_score is not None and previous_score < 60:
+        issues.append("revise foundational topics from the previous semester")
+
+    if not issues:
+        if risk_level == "Low Risk":
+            return "Maintain the current study routine, attendance and continuous-assessment performance."
+        return "Maintain consistency and focus on the subject areas with the lowest marks."
+
+    if risk_level == "High Risk":
+        prefix = "Priority actions: "
     elif risk_level == "Medium Risk":
-        return "Focus on weaker topics, improve internal marks, and add 1-2 study hours daily."
+        prefix = "Recommended actions: "
     else:
-        recs = []
-        if attendance < 65:
-            recs.append("Mandatory attendance improvement required")
-        if study_hours < 3.0:
-            recs.append("Increase daily structured study time")
-        if internal_marks < 50:
-            recs.append("Schedule remedial coaching sessions for internal assessments")
-        return "; ".join(recs) if recs else "Urgent faculty intervention and structured daily tutoring required."
+        prefix = "Continue monitoring; "
+
+    return prefix + "; ".join(issues) + "."
