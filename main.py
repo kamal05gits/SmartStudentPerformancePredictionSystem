@@ -93,10 +93,12 @@ def predict_single():
         data["Previous Semester Score (%)"]
     ]])
 
-    pred_score = round(float(model.predict(features)[0]), 2)
+    pred_score = round(float(np.clip(model.predict(features)[0], 0, 100)), 2)
     classification, risk_level = classify_student(pred_score)
     rec = generate_recommendation(
-        risk_level, data["Daily Study Hours"], data["Attendance Rate (%)"], data["Internal Assessment (%)"]
+        risk_level, data["Daily Study Hours"], data["Attendance Rate (%)"],
+        data["Internal Assessment (%)"], data["Assignment Score (%)"],
+        data["Previous Semester Score (%)"]
     )
 
     lbl_pred.config(text=f"Predicted Score: {pred_score}%")
@@ -131,13 +133,15 @@ def predict_batch_csv():
             return
 
         features = df[FEATURE_COLS].values
-        preds = model.predict(features)
+        preds = np.clip(model.predict(features), 0, 100)
 
         df["Predicted Score (%)"] = np.round(preds, 2)
         df["Classification"], df["Risk Level"] = zip(*df["Predicted Score (%)"].apply(classify_student))
         df["Actionable Recommendation"] = df.apply(
             lambda r: generate_recommendation(
-                r["Risk Level"], r["Daily Study Hours"], r["Attendance Rate (%)"], r["Internal Assessment (%)"]
+                r["Risk Level"], r["Daily Study Hours"], r["Attendance Rate (%)"],
+                r["Internal Assessment (%)"], r["Assignment Score (%)"],
+                r["Previous Semester Score (%)"]
             ), axis=1
         )
 
