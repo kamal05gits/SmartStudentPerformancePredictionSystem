@@ -1,24 +1,26 @@
-def calculate_performance(attendance, study_hours, internal_assessment, assignment, prev_semester):
-    return (
-        attendance * 0.20
-        + study_hours * 1.00
-        + internal_assessment * 0.25
-        + assignment * 0.20
-        + prev_semester * 0.25
-    )
-
-def evaluate_classification(score):
+def classify_student(score):
     if score >= 75.0:
-        return "High Distinction", "Low Risk"
+        classification = "High Distinction"
+        risk_level = "Low Risk"
     elif score >= 50.0:
-        return "Moderate / Average", "Medium Risk"
+        classification = "Moderate / Average"
+        risk_level = "Medium Risk"
     else:
-        return "Needs Attention", "High Risk"
+        classification = "Needs Attention"
+        risk_level = "High Risk"
+    return classification, risk_level
 
-def generate_recommendation(risk_level):
+def generate_recommendation(risk_level, study_hours, attendance, internal_marks):
     if risk_level == "Low Risk":
         return "Maintain current study consistency and active participation."
     elif risk_level == "Medium Risk":
         return "Focus on weaker topics, improve internal marks, and add 1-2 study hours daily."
     else:
-        return "Immediate academic intervention required: mandatory tutoring and attendance recovery."
+        recs = []
+        if attendance < 65:
+            recs.append("Mandatory attendance improvement required")
+        if study_hours < 3.0:
+            recs.append("Increase daily structured study time")
+        if internal_marks < 50:
+            recs.append("Schedule remedial coaching sessions for internal assessments")
+        return "; ".join(recs) if recs else "Urgent faculty intervention and structured daily tutoring required."
